@@ -1,0 +1,39 @@
+<!-- 1. 引入与后端完全匹配的 Artalk v2.9.1 样式与核心脚本 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/artalk/2.9.1/Artalk.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/artalk/2.9.1/Artalk.js"></script>
+
+<!-- 2. 评论区容器 -->
+<div id="Comments" class="article-comments markdown"></div>
+
+<!-- 3. 初始化 Artalk 并完美适配 Stack 主题日夜模式 -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // 初始化 Artalk
+    const artalk = Artalk.init({
+      el:        '#Comments',
+      pageKey:   '{{ .Permalink }}',
+      pageTitle: '{{ .Title }}',
+      server:    'https://artalk.lovelyrua.asia:81', // 👈 这里保持你之前配好的真实后端域名
+      site:      '{{ .Site.Title }}',
+    });
+
+    // 适配 Stack 主题切换白天/黑夜模式
+    function syncDarkMode() {
+      const isDark = document.documentElement.dataset.scheme === 'dark';
+      artalk.setDarkMode(isDark);
+    }
+    
+    // 首次加载同步
+    syncDarkMode();
+
+    // 监听 Stack 主题的日夜切换按钮
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'data-scheme') {
+          syncDarkMode();
+        }
+      });
+    });
+    observer.observe(document.documentElement, { attributes: true });
+  });
+</script>
