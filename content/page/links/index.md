@@ -24,7 +24,7 @@ links:
   - title: 放课后茶会
     description: K-ON 主题的音乐/技术资源综合论坛
     website: https://bbs.yduck.vip/
-    image: https://bbs.yduck.vip/assets/favicon-zdfmsncc.png
+    image: https://bbs.yduck.vip/assets/favicon-my5rnypk.png
 
   - title: 音乐解锁
     description: 解锁各平台的加密格式音乐文件
