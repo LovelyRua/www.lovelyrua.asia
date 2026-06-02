@@ -3,28 +3,28 @@ title: Links
 links:
   - title: 个人主页
     description: 我的个人展示页
-    website: https://lovelyrua.asia
+    website: https://lovelyrua.asia/
     image: https://www.lovelyrua.asia/img/avatar_hu_253c6d420e4fc379.png
-
-  - title: 放课后茶会
-    description: K-ON 主题的音乐/技术资源综合论坛
-    website: https://forums.lovelyrua.asia
-    image: https://forums.lovelyrua.asia/assets/favicon-zdfmsncc.png
 
   - title: 闲鱼之家
     description: 一个 Minecraft 公益服务器
-    website: https://www.lijianping.vip
-    image: https://www.lijianping.vip/wp-content/uploads/2025/08/%E4%B8%8B%E8%BD%BD.jpg
+    website: https://mc.yduck.vip/
+    image: https://mc.yduck.vip/wp-content/uploads/2025/08/%E4%B8%8B%E8%BD%BD.jpg
 
   - title: 休闲云盘
     description: 勉强能用
     website: https://pan.lovelyrua.asia/
-    image: https://www.lijianping.vip/wp-content/uploads/2025/09/leisurenetdisk_256.png
+    image: https://mc.yduck.vip/wp-content/uploads/2025/09/leisurenetdisk_256.png
 
   - title: LovelyRua 的文件服务器
     description: 神秘藏宝库
     website: https://hfs.lovelyrua.asia:81/
-    image: https://www.lijianping.vip/wp-content/uploads/2025/09/kita.png
+    image: https://mc.yduck.vip/wp-content/uploads/2025/09/kita.png
+
+  - title: 放课后茶会
+    description: K-ON 主题的音乐/技术资源综合论坛
+    website: https://bbs.yduck.vip/
+    image: https://bbs.yduck.vip/assets/favicon-zdfmsncc.png
 
   - title: 音乐解锁
     description: 解锁各平台的加密格式音乐文件
