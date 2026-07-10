@@ -457,11 +457,6 @@ sudo lsof +L1 | awk 'NR==1 || $7 > 10485760'
 sudo lsof +L1 | less
 ```
 
-```text
-sudo lsof +L1 | lmd 里的 lmd 不是常见系统命令,
-可能是本机 alias 或笔误。
-```
-
 清空进程仍持有的文件描述符：
 
 ```bash
