@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Registry on LovelyRua's Blog</title><link>https://www.lovelyrua.asia/tags/registry/</link><description>Recent content in Registry on LovelyRua's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 13 Oct 2026 08:03:00 +0800</lastBuildDate><atom:link href="https://www.lovelyrua.asia/tags/registry/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows 的 "网络 n" 怎么改名</title><link>https://www.lovelyrua.asia/p/windows-%E7%9A%84-%E7%BD%91%E7%BB%9C-n-%E6%80%8E%E4%B9%88%E6%94%B9%E5%90%8D/</link><pubDate>Tue, 13 Oct 2026 08:03:00 +0800</pubDate><guid>https://www.lovelyrua.asia/p/windows-%E7%9A%84-%E7%BD%91%E7%BB%9C-n-%E6%80%8E%E4%B9%88%E6%94%B9%E5%90%8D/</guid><description>&lt;p&gt;Windows 有时会把一个网络显示成 &lt;code&gt;网络 2&lt;/code&gt;, &lt;code&gt;网络 3&lt;/code&gt;, 甚至更大的编号&lt;/p&gt;
+&lt;p&gt;强迫症患者看到了难免感到手痒&lt;/p&gt;
+&lt;p&gt;想把它改成 &lt;code&gt;网络&lt;/code&gt; 或 &lt;code&gt;LAN&lt;/code&gt;, 不需要重置网络, 可以修改对应配置档的 &lt;code&gt;ProfileName&lt;/code&gt; 注册项&lt;/p&gt;
+&lt;h2 id="先认准要改的是哪个网络"&gt;先认准要改的是哪个网络
+&lt;/h2&gt;&lt;p&gt;打开 PowerShell, 输入:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-powershell" data-lang="powershell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;Get-NetConnectionProfile&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="nb"&gt;Select-Object&lt;/span&gt; &lt;span class="n"&gt;Name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;InterfaceAlias&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;NetworkCategory&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;会输出类似:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Name InterfaceAlias NetworkCategory
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;---- -------------- ---------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;网络 3 以太网 Private
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这里要改的是 &lt;code&gt;Name&lt;/code&gt;, &lt;code&gt;InterfaceAlias&lt;/code&gt; 是网卡名称, &lt;code&gt;NetworkCategory&lt;/code&gt; 是公用或专用网络类型&lt;/p&gt;
+&lt;p&gt;记下当前连接显示的名字, 等会儿用它在注册表里找对应的配置档&lt;/p&gt;
+&lt;h2 id="在注册表里改名"&gt;在注册表里改名
+&lt;/h2&gt;&lt;p&gt;按 &lt;code&gt;Win + R&lt;/code&gt;, 输入 &lt;code&gt;regedit&lt;/code&gt;, 打开注册表编辑器, 定位到:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;Profiles&lt;/code&gt; 下是一串以 &lt;code&gt;{GUID}&lt;/code&gt; 命名的子项&lt;/p&gt;
+&lt;p&gt;逐个点开, 看右侧的 &lt;code&gt;ProfileName&lt;/code&gt;, 找到值为刚才那个 &lt;code&gt;网络 3&lt;/code&gt; 的项&lt;/p&gt;
+&lt;p&gt;先右键这个 &lt;code&gt;{GUID}&lt;/code&gt; 子项, 选择 &lt;code&gt;导出&lt;/code&gt;, 留一份 &lt;code&gt;.reg&lt;/code&gt; 备份&lt;/p&gt;
+&lt;p&gt;然后双击右侧的 &lt;code&gt;ProfileName&lt;/code&gt;, 把数值数据改成想要的名字, 比如 &lt;code&gt;Cisco LAN&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;修改后重新打开网络设置确认&lt;/p&gt;
+&lt;p&gt;如果仍显示旧名字, 断开再连接一次, 或重启 Windows&lt;/p&gt;
+&lt;h2 id="参考"&gt;参考
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://learn.microsoft.com/en-us/powershell/module/netconnection/get-netconnectionprofile?view=windowsserver2025-ps" target="_blank" rel="noopener"
+&gt;Microsoft: Get-NetConnectionProfile&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://learn.microsoft.com/en-us/answers/questions/2843319/how-to-rename-the-3-network-connections-i-have-on" target="_blank" rel="noopener"
+&gt;Microsoft Q&amp;amp;A: How to rename network connections&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
